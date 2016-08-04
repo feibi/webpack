@@ -21,10 +21,13 @@ module.exports = {
         chunkFilename: "[id].chunk.js"
     },
     module: {
-        loader: [{
+        loaders: [{
             test: /\.js?$/,
             loader: "babel",
             exclude: /(node_modules)/,
+        }, {
+            test: /\.html?$/,
+            loader: "html"
         }, {
             test: /\.(jpg|png)$/,
             loader: "url?limit=8192"
@@ -42,33 +45,36 @@ module.exports = {
     resolve: {
         root: [process.cwd() + '/app', process.cwd() + '/node_modules'],
         alias: {
-            // "zepto": path.join(PATHS.libsPath, "/zepto/zepto.js")
+            "iscroll": path.join(PATHS.libsPath, "/iscroll/iscroll-lite.js"),
+            "zepto": path.join(PATHS.libsPath, "/zepto/zepto.js"),
+            "underscore": path.join(PATHS.libsPath, "/underscore/underscore.js"),
+            'webuploader': path.join(PATHS.libsPath, "/webuploader/webuploader.js"),
+            "common": path.join(PATHS.libsPath, "/util/common.js"), //validata.js
+            "validata": path.join(PATHS.libsPath, "/validata/validata.js"),
+            "iscrollZoom": path.join(PATHS.libsPath, "/iScroll/iscroll-zoom.js"),
+            //"iscrollZoom": path.join(PATHS.libsPath, "/iScroll/iscroll-zoom.js"),
+
         },
         // extensions: ['', '.js', '.css', '.scss', '.ejs', '.png', '.jpg']
     },
+    // externals: {
+    //     "jquery": "jQuery"
+    // }, //页面中已引入，不需要重复打包
     plugins: [
-            new webpack.HotModuleReplacementPlugin(),
-            new webpack.DefinePlugin({
-                'process.env.NODE_ENV': '"development"'
-            }),
-            new HtmlWebpackPlugin({
-                filename: 'index.html',
-                template: __dirname + '/build/index.html',
-                inject: 'true'
-            }),
-            /*new CommonsChunkPlugin("common.js")*/
-            /* new CommonsChunkPlugin({
-                  name: "vendor",
-                  minChunks: Infinity//1
-             })*/
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': '"development"'
+        }),
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: __dirname + '/build/index.html',
+            inject: 'true'
+        }),
+        /*new CommonsChunkPlugin("common.js")*/
+        /* new CommonsChunkPlugin({
+              name: "vendor",
+              minChunks: Infinity//1
+         })*/
 
-        ]
-        // devServer: {
-        //     hot: true,
-        //     inline: true,
-        //     host: "localhost", //10.188.10.29 localhost
-        //     port: 3000,
-        //     contentBase: "./build/",
-        //     //其实很简单的，只要配置这个参数就可以了  55306ad76803fa53168b458b 555f1d3bcaa821e80e8b456a
-        // },
+    ]
 }

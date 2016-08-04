@@ -1,12 +1,371 @@
-@charset "UTF-8";
-@import "header";
-
-$fontSize:16px;
-
-
-body{
-  font-size: $fontSize;
-  transition: all 1s;
-  display: flex;
-  justify-content: center;
+@charset "utf-8";
+$white: #fff;
+$bg-color: #f1f1f1;
+$orange: #eb661a;
+$font-color: #3d3d3d;
+//@import 'media_query';
+body {
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #f1f1f1;
+    &:focus {
+        outline: none;
+    }
+    /* background-color: $bg-gray-color; */
+}
+a,
+button,
+input,
+select,
+textarea {
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    outline: none!important;
+    text-decoration: none;
+    -webkit-appearance: none;
+    appearance: none;
+    /* color: $font-normal-color; */
+    &:active,
+    &:focus,
+    &:hover,
+    &:visited {
+        outline: none!important;
+    }
+}
+h1,
+h2,
+h3,
+h4,
+li,
+p,
+ul {
+    margin: 0;
+    padding: 0;
+}
+ul {
+    list-style: none;
+}
+p {
+    margin: 0.5rem 0;
+}
+.hidden,
+.hide {
+    display: none!important;
+    visibility: hidden;
+}
+.clear {
+    clear: both;
+}
+@mixin clean {
+    &:after {
+        clear: both;
+        height: 0;
+        display: block;
+        content: "";
+    }
+}
+//@import 'normalize';
+//@import "animation";
+//
+//
+//@import 'sprite';
+//@import "settings";
+$font-size: 16;
+$font-family: tahoma, arial, 'Hiragino Sans GB', \5FAE\8F6F\96C5\9ED1, sans-serif;
+@function switchRem($unit) {
+     @return $unit/$font-size+rem;
+}
+.main {
+    width: 100%;
+    min-height: 100%;
+}
+.scroll {
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+}
+.winmark {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+    opacity: 0.6;
+    z-index: 20;
+    background: rgba(0,0,0,0.30);
+    display: none;
+}
+//登录页面的弹框信息提示
+.alert {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    div {
+        opacity: 0.5;
+        background: #000000;
+        min-width: 164px;
+        height: 58px;
+        line-height: 58px;
+        text-align: center;
+        padding: 0 switchRem(20);
+        font-family: PingFangSC-Light;
+        font-size: 14px;
+        color: #ffffff;
+    }
+}
+.layer {
+    position: absolute;
+    z-index: 10; //   display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.3);
+}
+.alertbox {
+    display: none;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(0,0,0,0.3);
+    div {
+        width: 90%;
+        border-radius: 5px;
+        // height: 11.4rem;
+        background: #fff;
+        margin: 25% auto 0;
+    }
+    #wrapper {
+        //		margin-left: 1.75rem;
+        //		margin-right: 1.625rem;
+        height: 18.75rem;
+        overflow: hidden;
+        ul:nth-child(1) {
+            li {
+                min-height: 3.75rem;
+                height: 3.75rem;
+                line-height: 3.75rem;
+                text-align: center;
+                vertical-align: middle;
+                border-bottom: 1px solid #dbdbdb;
+                opacity: 0.34;
+                font-family: PingFangSC-Regular;
+                font-size: 15px;
+                color: #3d3d3d;
+            }
+            .hover {
+                font-size: 16px;
+                opacity: 1;
+                color: #eb661a;
+            }
+            .border-none {
+                border: none;
+            }
+        }
+    }
+    ul:nth-child(2) {
+        height: 3.1875rem;
+        display: flex;
+        background: #f1f1f1;
+        border-top: 1px solid #ddd;
+        justify-content: space-around;
+        align-items: center;
+        li {
+            height: 3.1875rem;
+            text-align: center;
+            display: flex;
+            flex: 1;
+            justify-content: center;
+            button {
+                background: none;
+                border: none;
+                font-family: PingFangSC-Regular;
+                font-size: 16px;
+                color: #3d3d3d;
+            }
+        }
+        li:nth-child(1) {
+            border-right: 1px solid #ddd;
+        }
+    }
+}
+select {
+    background: none;
+    border: none;
+    outline: none;
+}
+//合同详情底部 固定的按钮
+.btn-checkcontract {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 3.1875rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: #f1f1f1;
+    border: 1px solid #ddd;
+    // display: none;
+    button {
+        align-self: center;
+        font-family: PingFangSC-Regular;
+        font-size: 18px;
+        color: #eb661a;
+        border: none;
+        background: none;
+    }
+    a {
+        align-self: center;
+        font-family: PingFangSC-Regular;
+        font-size: 18px;
+        color: #eb661a;
+        border: none;
+        background: none;
+    }
+}
+//带有顶部及返回上一页
+.flex-top {
+    width: 100%;
+    height: 2.8125rem;
+    border-bottom: 1px solid #ececec;
+    box-sizing: border-box;
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-bottom: 1px solid #ececec;
+    box-sizing: border-box;
+    .flex-item {
+        //      height: 2.8125rem;
+        align-self: center;
+        flex: 1;
+    }
+    .flex-item:nth-child(1) {
+        padding-left: 0.875rem;
+    }
+    .flex-item:nth-child(2) {
+        margin-left: -0.875rem;
+        font-weight: bold;
+        font-family: PingFangSC-Medium;
+        font-size: 18px;
+        color: #3d3d3d;
+        text-align: center;
+    }
+}
+/* .flex-body{
+    width: 100%;
+    // height: 100%;
+    position: absolute;
+    left:0;
+    right: 0;
+    top: 2.8125rem;
+    bottom: 0;
+    overflow: hidden;
+}
+ */
+.contair-msg {
+    display: flex;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    flex-direction: column;
+    .msg {
+        opacity: 0.5;
+        background: #000000;
+        min-width: 8rem;
+        max-width: 80%;
+        min-height: 2.5rem;
+        //height:58px;
+        color: white;
+        align-self: center;
+        padding: 0.5rem;
+        text-align: center;
+        font-size: 14px;
+        line-height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+//@import 'icon';
+//@import 'login';
+//@import 'index';
+//@import 'contact_info';
+//@import 'contract';
+//@import 'contract_detail';
+//@import 'bill_list';
+//@import 'bill';
+//
+//
+//@import 'select';
+//@import 'scroll';
+.layer {
+    position: absolute;
+    z-index: 10;
+    display: none;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,.3);
+}
+.newPage {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+.nowPage {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 0;
+}
+.nextPage {
+    position: absolute;
+    left: 100%;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+    background-color: white;
+}
+.iframe {
+    margin-top: 0.5rem;
+    height: 100%;
+    width: 100%;
+}
+.back-index {
+    width: 2rem;
+}
+.iframe-body {
+    overflow-y: scroll;
+    -webkit-overflow-scrolling: touch;
 }

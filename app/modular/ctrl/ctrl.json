@@ -1,0 +1,18 @@
+{
+    "foldar": {
+        "uc": {
+            "base": "",
+            "path": "userCenter",
+            "children": {
+                "in": {
+                    "js": "index",
+                    "html": "index"
+                },
+                "test": {
+                    "js": "test/test",
+                    "html": "test/test"
+                }
+            }
+        }
+    }
+}
